@@ -51,9 +51,10 @@ variable "placeholder" {
 
 variable "bucket_name" {
   description = "The name for the S3 bucket"
+  default = "test"
 }
 
 variable "environment" {
   description = "The environment where the resources are deployed"
-  default = "staging"
+  default = "testing"
 }
