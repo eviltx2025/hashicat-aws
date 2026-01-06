@@ -1,0 +1,23 @@
+name: Auto-Approve PR
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  approve:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Approve Pull Request
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.pulls.createReview({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              event: 'APPROVE',
+              body: 'Auto-approved by automation'
+            })
